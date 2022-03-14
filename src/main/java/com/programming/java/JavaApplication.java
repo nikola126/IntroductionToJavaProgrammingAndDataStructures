@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JavaApplication {
 
 	public static void main(String[] args) {
-		ChapterOne taskOne = new ChapterOne();
-		taskOne.taskOne();
+		ChapterOne chapterOne = new ChapterOne();
+		chapterOne.printAll();
 	}
 
 }
