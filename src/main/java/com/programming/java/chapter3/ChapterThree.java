@@ -595,7 +595,7 @@ public class ChapterThree {
             if (3 < weight && weight <= 10) {
                 System.out.println("Shipping cost: " + 8.5);
             }
-            if (10 < weight && weight <= 20) {
+            if (10 < weight) {
                 System.out.println("Shipping cost: " + 10.5);
             }
         }
@@ -603,10 +603,14 @@ public class ChapterThree {
 
     public void taskNineteen() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter three edges of a triangle:");
+        System.out.println("Edge 1 [x,y]: ");
         int aX = scanner.nextInt();
         int aY = scanner.nextInt();
+        System.out.println("Edge 2 [x,y]: ");
         int bX = scanner.nextInt();
         int bY = scanner.nextInt();
+        System.out.println("Edge 3 [x,y]: ");
         int cX = scanner.nextInt();
         int cY = scanner.nextInt();
 
