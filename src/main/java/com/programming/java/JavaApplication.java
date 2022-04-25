@@ -20,13 +20,8 @@ public class JavaApplication {
 //		chapterFour.printAll();
 //		ChapterFive chapterFive = new ChapterFive();
 //		chapterFive.printAll();
-		ChapterSix chapterSix = new ChapterSix();
-		System.out.println(ChapterSix.getPentagonalNumber(4));
-		System.out.println(ChapterSix.sumDigits(12345));
-		System.out.println(ChapterSix.isPalindrome(12321));
-		ChapterSix.displayReversed(12345);
-		ChapterSix.displaySortedNumbers(5, 10, 1);
-		ChapterSix.displayPattern(5);
+		ChapterSix.printAll();
+
 	}
 
 }
