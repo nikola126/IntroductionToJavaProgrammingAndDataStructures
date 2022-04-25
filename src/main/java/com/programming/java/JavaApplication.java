@@ -5,6 +5,7 @@ import com.programming.java.chapter2.ChapterTwo;
 import com.programming.java.chapter3.ChapterThree;
 import com.programming.java.chapter4.ChapterFour;
 import com.programming.java.chapter5.ChapterFive;
+import com.programming.java.chapter6.ChapterSix;
 
 public class JavaApplication {
 
@@ -17,8 +18,15 @@ public class JavaApplication {
 //		chapterThree.printAll();
 //		ChapterFour chapterFour = new ChapterFour();
 //		chapterFour.printAll();
-		ChapterFive chapterFive = new ChapterFive();
-		chapterFive.printAll();
+//		ChapterFive chapterFive = new ChapterFive();
+//		chapterFive.printAll();
+		ChapterSix chapterSix = new ChapterSix();
+		System.out.println(ChapterSix.getPentagonalNumber(4));
+		System.out.println(ChapterSix.sumDigits(12345));
+		System.out.println(ChapterSix.isPalindrome(12321));
+		ChapterSix.displayReversed(12345);
+		ChapterSix.displaySortedNumbers(5, 10, 1);
+		ChapterSix.displayPattern(5);
 	}
 
 }
