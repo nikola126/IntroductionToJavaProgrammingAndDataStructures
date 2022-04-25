@@ -18,7 +18,7 @@ public class JavaApplication {
 //		ChapterFour chapterFour = new ChapterFour();
 //		chapterFour.printAll();
 		ChapterFive chapterFive = new ChapterFive();
-		chapterFive.taskTwelve();
+		chapterFive.printAll();
 	}
 
 }

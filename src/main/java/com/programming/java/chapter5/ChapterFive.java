@@ -127,6 +127,62 @@ public class ChapterFive {
         System.out.println("Total cost of 4 year tuition after the 10th year: " + totalCostForFourYearsAfterTenYears);
     }
 
+    public void taskEight() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of students: ");
+        int NUMBER_OF_STUDENTS = scanner.nextInt();
+
+        if (NUMBER_OF_STUDENTS < 1)
+            return;
+
+        int maxScore = Integer.MIN_VALUE;
+        String studentWithMaxScore = "";
+
+        for (int i = 0; i < NUMBER_OF_STUDENTS; i++) {
+            System.out.printf("Enter student [%d/%d] name and score: \n", i + 1, NUMBER_OF_STUDENTS);
+            String name = scanner.next();
+            int score = scanner.nextInt();
+
+            if (score >= maxScore) {
+                maxScore = score;
+                studentWithMaxScore = name;
+            }
+        }
+
+        System.out.printf("Student with max score (%d): %s\n", maxScore, studentWithMaxScore);
+    }
+
+    public void taskNine() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of students: ");
+        int NUMBER_OF_STUDENTS = scanner.nextInt();
+
+        if (NUMBER_OF_STUDENTS < 1)
+            return;
+
+        int maxScore = Integer.MIN_VALUE;
+        int secondMaxScore = Integer.MIN_VALUE;
+        String studentWithMaxScore = "";
+        String studentWithSecondMaxScore = "";
+
+        for (int i = 0; i < NUMBER_OF_STUDENTS; i++) {
+            System.out.printf("Enter student [%d/%d] name and score: \n", i + 1, NUMBER_OF_STUDENTS);
+            String name = scanner.next();
+            int score = scanner.nextInt();
+
+            if (score >= maxScore) {
+                studentWithSecondMaxScore = studentWithMaxScore;
+                secondMaxScore = maxScore;
+
+                maxScore = score;
+                studentWithMaxScore = name;
+            }
+        }
+
+        System.out.printf("Student with max score (%d): %s\n", maxScore, studentWithMaxScore);
+        System.out.printf("Student with second max score (%d): %s\n", secondMaxScore, studentWithSecondMaxScore);
+    }
+
     public void taskTen() {
         int count = 0;
         for (int i = 100; i <= 1000; i++) {
@@ -162,5 +218,224 @@ public class ChapterFive {
         }
         System.out.println("The smallest N is: " + n);
         System.out.println("N^2 = " + Math.pow(n, 2));
+    }
+
+    public void taskThirteen() {
+        int n = 1;
+        while (Math.pow(n, 3) <= 12000) {
+            n += 1;
+        }
+        System.out.println("The largest N is: " + n);
+        System.out.println("N^3 = " + Math.pow(n, 3));
+    }
+
+    public void taskFourteen() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter n1: ");
+        int n1 = scanner.nextInt();
+        System.out.print("Enter n2: ");
+        int n2 = scanner.nextInt();
+
+        int gcd = 1;
+        int d = Math.min(n1, n2);
+        for (int i = d; i >= 1; i--) {
+            if (n1 % i == 0 && n2 % i == 0)
+                gcd = Math.max(gcd, i);
+        }
+
+        System.out.printf("The GCD of %d and %d is: %d\n", n1, n2, gcd);
+    }
+
+    public void taskFifteen() {
+        char c = '!';
+
+        int n = 0;
+        while (c != '~') {
+            System.out.printf("%c ", c);
+            n++;
+            if (n == 10) {
+                System.out.println();
+                n = 0;
+            }
+            c += 1;
+        }
+    }
+
+    public void taskSixteen() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter an integer: ");
+        int N = scanner.nextInt();
+        int factor = 2;
+
+        while (N != 1) {
+            if (N % factor == 0) {
+                System.out.printf("%d ", factor);
+                N /= factor;
+            } else {
+                factor += 1;
+            }
+        }
+    }
+
+    public void taskSeventeen() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of lines: ");
+        int N = scanner.nextInt();
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < 6 - i; j++)
+                System.out.print("  ");
+            for (int j = i; j >= 1; j--)
+                System.out.printf("%d ", j + 1);
+            for (int j = 0; j <= i; j++)
+                System.out.printf("%d ", j + 1);
+
+            System.out.println();
+        }
+    }
+
+    public void taskEighteen() {
+        System.out.println("Pattern A");
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j <= i; j++)
+                System.out.printf("%d ", j + 1);
+            System.out.println();
+        }
+
+        System.out.println();
+        System.out.println("Pattern B");
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6 - i; j++)
+                System.out.printf("%d ", j + 1);
+            System.out.println();
+        }
+
+        System.out.println();
+        System.out.println("Pattern C");
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6 - i; j++)
+                System.out.print("  ");
+            for (int j = i; j >= 0; j--)
+                System.out.printf("%d ", j + 1);
+            System.out.println();
+        }
+
+        System.out.println();
+        System.out.println("Pattern D");
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < i; j++)
+                System.out.print("  ");
+            for (int j = 0; j < 6 - i; j++)
+                System.out.printf("%d ", j + 1);
+            System.out.println();
+        }
+    }
+
+    public void taskNineteen() {
+        int N = 8;
+        int leftMultiplier = 1;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N - i; j++)
+                System.out.print("\t");
+            for (int j = i; j >= 1; j--) {
+                System.out.printf("%d\t", leftMultiplier);
+                leftMultiplier *= 2;
+            }
+
+            int rightMultiplier = leftMultiplier;
+
+            for (int j = 0; j <= N; j++) {
+                if (rightMultiplier > 0)
+                    System.out.printf("%d\t", rightMultiplier);
+                rightMultiplier /= 2;
+            }
+
+            System.out.println();
+            leftMultiplier = 1;
+        }
+    }
+
+    public void taskTwenty() {
+        final int NUMBER_OF_PRIMES_PER_LINE = 8; // Display 10 per line
+        int count = 0;
+        int number = 2; // A number to be tested for primeness
+
+        System.out.println("The prime numbers between 2 and 1000 are \n");
+
+        // Repeatedly find prime numbers
+        while (number <= 1000) {
+            // Assume the number is prime
+            boolean isPrime = true; // Is the current number prime?
+
+            // Test whether number is prime
+            for (int divisor = 2; divisor <= number / 2; divisor++) {
+                if (number % divisor == 0) { // If true, number is not prime
+                    isPrime = false; // Set isPrime to false
+                    break; // Exit the for loop
+                }
+            }
+
+            // Display the prime number and increase the count
+            if (isPrime) {
+                count++; // Increase the count
+                if (count % NUMBER_OF_PRIMES_PER_LINE == 0) {
+                    // Display the number and advance to the new line
+                    System.out.println(number);
+                    count = 0;
+                } else
+                    System.out.print(number + " ");
+            }
+
+            // Check if the next number is prime
+            number++;
+        }
+    }
+
+    public void printAll() {
+        System.out.println(this.getClass().getName());
+        taskOne();
+        System.out.println();
+        taskTwo();
+        System.out.println();
+        taskThree();
+        System.out.println();
+        taskFour();
+        System.out.println();
+        taskFive();
+        System.out.println();
+        taskSix();
+        System.out.println();
+        taskSeven();
+        System.out.println();
+        taskEight();
+        System.out.println();
+        taskNine();
+        System.out.println();
+        taskTen();
+        System.out.println();
+        taskEleven();
+        System.out.println();
+        taskTwelve();
+        System.out.println();
+        taskThirteen();
+        System.out.println();
+        taskFourteen();
+        System.out.println();
+        taskFifteen();
+        System.out.println();
+        taskSixteen();
+        System.out.println();
+        taskSeventeen();
+        System.out.println();
+        taskEighteen();
+        System.out.println();
+        taskNineteen();
+        System.out.println();
+        taskTwenty();
+        System.out.println();
     }
 }
