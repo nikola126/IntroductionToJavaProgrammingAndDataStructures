@@ -1,6 +1,7 @@
 package com.programming.java;
 
 import com.programming.java.chapter7.ChapterSeven;
+import com.programming.java.chapter8.ChapterEight;
 
 public class JavaApplication {
 
@@ -16,7 +17,11 @@ public class JavaApplication {
 //		ChapterFive chapterFive = new ChapterFive();
 //		chapterFive.printAll();
 //		ChapterSix.printAll();
-        ChapterSeven.printAll();
+//        ChapterSeven.printAll();
+//        ChapterEight.taskOne();
+//        ChapterEight.taskTwo();
+//        ChapterEight.gradeExam();
+        ChapterEight.taskFour();
 
     }
 
