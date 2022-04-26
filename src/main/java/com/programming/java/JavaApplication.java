@@ -4,7 +4,7 @@ import com.programming.java.chapter7.ChapterSeven;
 
 public class JavaApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 //		ChapterOne chapterOne = new ChapterOne();
 //		chapterOne.printAll();
 //		ChapterTwo chapterTwo = new ChapterTwo();
@@ -16,9 +16,8 @@ public class JavaApplication {
 //		ChapterFive chapterFive = new ChapterFive();
 //		chapterFive.printAll();
 //		ChapterSix.printAll();
-//		ChapterSeven.taskSeven();
-		ChapterSeven.taskTwelve();
+        ChapterSeven.printAll();
 
-	}
+    }
 
 }
