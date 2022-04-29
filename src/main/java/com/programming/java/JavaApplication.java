@@ -18,10 +18,7 @@ public class JavaApplication {
 //		chapterFive.printAll();
 //		ChapterSix.printAll();
 //        ChapterSeven.printAll();
-//        ChapterEight.taskOne();
-//        ChapterEight.taskTwo();
-//        ChapterEight.gradeExam();
-        ChapterEight.taskFour();
+//        ChapterEight.printAll();
 
     }
 
