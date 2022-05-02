@@ -54,4 +54,13 @@ public class Circle2D {
         return (getDistanceBetweenPoints(this.x, circle2D.getX(), this.y, circle2D.getY())
                 <= (this.radius + circle2D.getRadius()));
     }
+
+    @Override
+    public String toString() {
+        return "Circle2D{" +
+                "x=" + x +
+                ", y=" + y +
+                ", radius=" + radius +
+                '}';
+    }
 }

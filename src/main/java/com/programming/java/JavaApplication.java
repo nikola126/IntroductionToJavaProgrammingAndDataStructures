@@ -1,6 +1,7 @@
 package com.programming.java;
 
 import com.programming.java.chapter10.ChapterTen;
+import com.programming.java.chapter11.ChapterEleven;
 import com.programming.java.chapter7.ChapterSeven;
 import com.programming.java.chapter8.ChapterEight;
 import com.programming.java.chapter9.ChapterNine;
@@ -23,6 +24,19 @@ public class JavaApplication {
 //        ChapterEight.printAll();
 //        ChapterNine.printAll();
 //        ChapterTen.printAll();
+//        ChapterEleven.taskOne();
+//        ChapterEleven.taskTwo();
+//        ChapterEleven.taskThree();
+//        ChapterEleven.taskFour();
+//        ChapterEleven.taskSix();
+//        ChapterEleven.taskSeven();
+//        ChapterEleven.taskEight();
+//        ChapterEleven.taskNine();
+//        ChapterEleven.taskTen();
+        ChapterEleven.taskEleven();
+        ChapterEleven.taskTwelve();
+        ChapterEleven.taskThirteen();
+        ChapterEleven.taskFourteen();
     }
 
 }

@@ -47,4 +47,13 @@ public class MyDate {
     public int getYear() {
         return year;
     }
+
+    @Override
+    public String toString() {
+        return "MyDate{" +
+                "day=" + day +
+                ", month=" + month +
+                ", year=" + year +
+                '}';
+    }
 }
