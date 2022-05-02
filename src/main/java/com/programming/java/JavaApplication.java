@@ -22,14 +22,7 @@ public class JavaApplication {
 //        ChapterSeven.printAll();
 //        ChapterEight.printAll();
 //        ChapterNine.printAll();
-//        ChapterTen.taskOne();
-//        ChapterTen.taskThree();
-//        ChapterTen.taskFour();
-//        ChapterTen.taskFive();
-//        ChapterTen.taskSix();
-//        ChapterTen.taskSeven();
-        ChapterTen.taskTen();
-        ChapterTen.taskEleven();
+//        ChapterTen.printAll();
     }
 
 }
