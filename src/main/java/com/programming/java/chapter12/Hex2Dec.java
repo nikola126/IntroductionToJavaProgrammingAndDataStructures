@@ -1,5 +1,7 @@
 package com.programming.java.chapter12;
 
+import com.programming.java.chapter12.customExceptions.HexFormatException;
+
 import java.util.Scanner;
 
 public class Hex2Dec {
@@ -15,15 +17,16 @@ public class Hex2Dec {
 
         try {
             decimal = hexToDecimal(hex.toUpperCase());
-        } catch (NumberFormatException e) {
+        } catch (HexFormatException e) {
             System.out.println(e.getMessage());
+            return;
         }
 
         System.out.println("The decimal value for hex number "
                 + hex + " is " + decimal);
     }
 
-    public static int hexToDecimal(String hex) {
+    public static int hexToDecimal(String hex) throws HexFormatException {
         int decimalValue = 0;
         for (int i = 0; i < hex.length(); i++) {
             char hexChar = hex.charAt(i);
@@ -33,9 +36,9 @@ public class Hex2Dec {
         return decimalValue;
     }
 
-    public static int hexCharToDecimal(char ch) {
+    public static int hexCharToDecimal(char ch) throws HexFormatException {
         if (ch >= 'F')
-            throw new NumberFormatException("Non-hex character found!");
+            throw new HexFormatException("Non-hex character found!");
 
         if (ch >= 'A' && ch <= 'F')
             return 10 + ch - 'A';

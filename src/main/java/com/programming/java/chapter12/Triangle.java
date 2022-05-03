@@ -1,6 +1,7 @@
 package com.programming.java.chapter12;
 
 import com.programming.java.chapter11.GeometricObject;
+import com.programming.java.chapter12.customExceptions.IllegalTriangleException;
 
 public class Triangle extends GeometricObject {
     private double side1;
