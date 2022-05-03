@@ -1,5 +1,9 @@
 package com.programming.java;
 
+import com.programming.java.test.TestEquality;
+import com.programming.java.test.TestExceptions;
+import com.programming.java.test.TestHashSet;
+
 public class JavaApplication {
 
     public static void main(String[] args) {
@@ -19,6 +23,9 @@ public class JavaApplication {
 //        ChapterNine.printAll();
 //        ChapterTen.printAll();
 //        ChapterEleven.printAll();
+        TestExceptions.task();
+        TestHashSet.task();
+        TestEquality.task();
     }
 
 }
