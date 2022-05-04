@@ -8,6 +8,9 @@ public class TestExceptions {
             System.out.println("Divide by " + i);
             try {
                 division(i);
+            } catch (MyException e) {
+                // will NOT catch division by zero
+                System.out.println("MyException caught in task()");
             } catch (Exception e) {
                 System.out.println("Exception caught in task()");
             } finally {
@@ -17,12 +20,7 @@ public class TestExceptions {
     }
 
     public static void division(int n) throws MyException {
-        try {
-            int result = 10 / n;
-        } catch (Exception e) {
-            throw new MyException();
-        } finally {
-            System.out.println("Finally in division()");
-        }
+        int result = 10 / n;
+        throw new MyException();
     }
 }

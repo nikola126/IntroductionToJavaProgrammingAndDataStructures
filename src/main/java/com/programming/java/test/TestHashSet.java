@@ -19,7 +19,7 @@ public class TestHashSet {
         set.add(point4);
         set.add(point5);
 
-        System.out.println("Size of set: " + set.size()); // should be 5
+        System.out.println("Size of set: " + set.size()); // should be 3
 
         Point point6 = new Point(5, 6);
         Point point7 = point6;
@@ -27,6 +27,6 @@ public class TestHashSet {
         set.add(point6);
         set.add(point7);
 
-        System.out.println("Size of set: " + set.size()); // should be 6
+        System.out.println("Size of set: " + set.size()); // should be 4
     }
 }
