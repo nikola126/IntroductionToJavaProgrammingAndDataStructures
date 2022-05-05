@@ -1,5 +1,8 @@
 package com.programming.java;
 
+import com.programming.java.chapter11.ChapterEleven;
+import com.programming.java.chapter12.ChapterTwelve;
+
 public class JavaApplication {
 
     public static void main(String[] args) {
@@ -19,6 +22,10 @@ public class JavaApplication {
 //        ChapterNine.printAll();
 //        ChapterTen.printAll();
 //        ChapterEleven.printAll();
+//        ChapterTwelve.taskTwo();
+//        ChapterTwelve.taskThree();
+        ChapterTwelve.taskTen();
+        ChapterTwelve.taskFifteen();
     }
 
 }
