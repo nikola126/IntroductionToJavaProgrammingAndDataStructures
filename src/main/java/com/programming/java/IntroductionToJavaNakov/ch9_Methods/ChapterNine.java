@@ -1,5 +1,6 @@
 package com.programming.java.IntroductionToJavaNakov.ch9_Methods;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ChapterNine {
@@ -184,6 +185,90 @@ public class ChapterNine {
 
         System.out.print(N + " in reverse: ");
         reverseNumber(N);
+        System.out.println();
+    }
+
+    public static int[] multiply(int[] a, int[] b) {
+        int BUFFER_SIZE = 200;
+        int[] buffer = new int[BUFFER_SIZE];
+        int offset = 0;
+        int pos = offset;
+        int maxPos = 0;
+        int carry = 0;
+        for (int j = b.length - 1; j >= 0; j--) {
+            for (int i = a.length - 1; i >= 0; i--) {
+                int digitA = a[i];
+                int digitB = b[j];
+
+                int calculation = digitA * digitB;
+
+                int toPlace = buffer[pos] + calculation + carry;
+
+                if (toPlace >= 10) {
+                    carry = toPlace / 10;
+                } else
+                    carry = 0;
+                buffer[pos] = toPlace % 10;
+                pos += 1;
+            }
+
+            if (carry > 0) {
+                buffer[pos] = carry;
+                carry = 0;
+                pos++;
+            }
+
+            maxPos = Math.max(maxPos, pos);
+            offset += 1;
+            pos = offset;
+        }
+        return Arrays.copyOfRange(reverseArray(buffer), BUFFER_SIZE - maxPos, BUFFER_SIZE);
+    }
+
+    public static int[] convertToArray(int N) {
+        int BUFFER_SIZE = 200;
+        int[] buffer = new int[BUFFER_SIZE];
+        int i = BUFFER_SIZE - 1;
+        int bufferLength = 0;
+
+        while (N > 0) {
+            buffer[i] = N % 10;
+            N /= 10;
+            i--;
+            bufferLength += 1;
+        }
+
+        return Arrays.copyOfRange(buffer, BUFFER_SIZE - bufferLength, BUFFER_SIZE);
+    }
+
+    public static int[] reverseArray(int[] array) {
+        int N = array.length;
+        int[] reversed = new int[N];
+        int pos = 0;
+        for (int i = N - 1; i >= 0; i--) {
+            reversed[pos] = array[i];
+            pos += 1;
+        }
+        return reversed;
+    }
+
+    public static void normalPrint(int[] array) {
+        for (int i = array.length - 1; i >= 0; i--)
+            System.out.printf("%d", array[i]);
+        System.out.println();
+    }
+
+    public static void taskEight() {
+        int targetFactorial = 100;
+        int[] factorial = convertToArray(1);
+
+        for (int i = 2; i <= targetFactorial; i++) {
+            int[] next = convertToArray(i);
+            factorial = multiply(factorial, next);
+        }
+
+        System.out.printf("Factorial of %d is: \n", targetFactorial);
+        normalPrint(reverseArray(factorial));
     }
 
     public static void printMenu() {
@@ -262,15 +347,64 @@ public class ChapterNine {
         }
     }
 
+    public static void taskTen() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Example polynomial: [Ax + By + Cz]");
+
+        int[] poly1 = new int[3];
+        int[] poly2 = new int[3];
+
+        System.out.println("Enter polynomial 1: ");
+        System.out.print("A = ");
+        poly1[0] = scanner.nextInt();
+        System.out.print("B = ");
+        poly1[1] = scanner.nextInt();
+        System.out.print("C = ");
+        poly1[2] = scanner.nextInt();
+
+        System.out.println("Enter polynomial 2: ");
+        System.out.print("A = ");
+        poly2[0] = scanner.nextInt();
+        System.out.print("B = ");
+        poly2[1] = scanner.nextInt();
+        System.out.print("C = ");
+        poly2[2] = scanner.nextInt();
+
+        // X^2 Y^2 Z^2 XY YZ XZ
+        int[] product = new int[6];
+        for (int i = 0; i < 3; i++) {
+            int term1 = poly1[i];
+            for (int j = 0; j < 3; j++) {
+                int term2 = poly2[j];
+
+                if (i == j)
+                    product[i] += term1 * term2;
+                if (i == 0 && j == 1)
+                    product[3] += term1 * term2;
+                if (i == 1 && j == 2)
+                    product[4] += term1 * term2;
+                if (i == 0 && j == 2)
+                    product[5] += term1 * term2;
+            }
+        }
+
+        System.out.printf("((%d)x + (%d)y + (%d)z) * ", poly1[0], poly1[1], poly1[2]);
+        System.out.printf("((%d)x + (%d)y + (%d)z) =\n", poly2[0], poly2[1], poly2[2]);
+        System.out.printf("= (%d)x^2 + (%d)y^2 + (%d)z^2 + (%d)xy + (%d)yz + (%d)xz\n",
+                product[0], product[1], product[2], product[3], product[4], product[5]);
+    }
+
     public static void printAll() {
-//        taskOne();
-//        taskTwo();
-//        taskThree();
-//        taskFour();
-//        taskFive();
-//        taskSix();
-//        taskSeven();
-//        taskNine();
+        taskOne();
+        taskTwo();
+        taskThree();
+        taskFour();
+        taskFive();
+        taskSix();
+        taskSeven();
+        taskEight();
+        taskNine();
+        taskTen();
     }
 
     public static void main(String[] args) {
