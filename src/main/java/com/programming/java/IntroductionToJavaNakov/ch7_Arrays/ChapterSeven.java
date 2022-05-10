@@ -400,7 +400,35 @@ public class ChapterSeven {
         matrixFormatD(matrix);
     }
 
-    public static void maxPlatform3x3(int[][] matrix) {
+    public static int maxPlatform2x2(int[][] matrix) {
+        int bestSum = Integer.MIN_VALUE;
+        int bestRow = 0;
+        int bestCol = 0;
+        for (int row = 0; row < matrix.length - 1; row++) {
+            for (int col = 0; col < matrix[0].length - 1; col++) {
+                int sum = matrix[row][col] + matrix[row][col + 1]
+                        + matrix[row + 1][col] + matrix[row + 1][col + 1];
+                if (sum > bestSum) {
+                    bestSum = sum;
+                    bestRow = row;
+                    bestCol = col;
+                }
+            }
+        }
+
+        System.out.println("The best platform is:");
+        System.out.printf(" %d %d%n",
+                matrix[bestRow][bestCol],
+                matrix[bestRow][bestCol + 1]);
+        System.out.printf(" %d %d%n",
+                matrix[bestRow + 1][bestCol],
+                matrix[bestRow + 1][bestCol + 1]);
+        System.out.printf("The maximal sum is: %d%n", bestSum);
+
+        return bestSum;
+    }
+
+    public static int maxPlatform3x3(int[][] matrix) {
         int bestSum = Integer.MIN_VALUE;
         int bestRow = 0;
         int bestCol = 0;
@@ -431,6 +459,8 @@ public class ChapterSeven {
                 matrix[bestRow + 2][bestCol + 1],
                 matrix[bestRow + 2][bestCol + 2]);
         System.out.printf("The maximal sum is: %d%n", bestSum);
+
+        return bestSum;
     }
 
     public static void taskEleven() {
