@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
-<!-- https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms762271(v=vs.85)?msclkid=d4714403d13c11ecb7d7dfbdaf7bfbde -->
+<!-- Based on Microsoft Sample XML and W3Schools Sample XML -->
+<!-- https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms762271(v=vs.85) -->
+<!-- https://www.w3schools.com/xml/xquery_example.asp -->
 <!-- Added cover attribute to the book field -->
 <!-- Added currency attribute to the price field -->
-<!-- Changed Author field to Authors, containing Author objects -->
+<!-- Changed Author field to Authors array, containing Author objects -->
 <catalog>
     <book id="bk101" cover="paperback">
         <authors>
@@ -15,8 +17,7 @@
         <genre>Computer</genre>
         <price currency="usd">44.95</price>
         <publish_date>2000-10-01</publish_date>
-        <description>An in-depth look at creating applications
-            with XML.
+        <description>An in-depth look at creating applications with XML.
         </description>
     </book>
     <book id="bk102">
@@ -30,10 +31,7 @@
         <genre>Fantasy</genre>
         <price currency="usd">5.95</price>
         <publish_date>2000-12-16</publish_date>
-        <description>A former architect battles corporate zombies,
-            an evil sorceress, and her own childhood to become queen
-            of the world.
-        </description>
+        <description>A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world.</description>
     </book>
     <book id="bk103">
         <authors>
@@ -46,10 +44,7 @@
         <genre>Fantasy</genre>
         <price currency="cad">5.95</price>
         <publish_date>2000-11-17</publish_date>
-        <description>After the collapse of a nanotechnology
-            society in England, the young survivors lay the
-            foundation for a new society.
-        </description>
+        <description>After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.</description>
     </book>
     <book id="bk104" cover="paperback">
         <authors>
@@ -62,11 +57,7 @@
         <genre>Fantasy</genre>
         <price currency="cad">5.95</price>
         <publish_date>2001-03-10</publish_date>
-        <description>In post-apocalypse England, the mysterious
-            agent known only as Oberon helps to create a new life
-            for the inhabitants of London. Sequel to Maeve
-            Ascendant.
-        </description>
+        <description>In post-apocalypse England, the mysterious agent known only as Oberon helps to create a new life for the inhabitants of London. Sequel to Maeve Ascendant.</description>
     </book>
     <book id="bk105" cover="paperback">
         <authors>
@@ -79,10 +70,7 @@
         <genre>Fantasy</genre>
         <price currency="usd">5.95</price>
         <publish_date>2001-09-10</publish_date>
-        <description>The two daughters of Maeve, half-sisters,
-            battle one another for control of England. Sequel to
-            Oberon's Legacy.
-        </description>
+        <description>The two daughters of Maeve, half-sisters, battle one another for control of England. Sequel to Oberon's Legacy.</description>
     </book>
     <book id="bk106">
         <authors>
@@ -95,9 +83,7 @@
         <genre>Romance</genre>
         <price currency="gbp">4.95</price>
         <publish_date>2000-09-02</publish_date>
-        <description>When Carla meets Paul at an ornithology
-            conference, tempers fly as feathers get ruffled.
-        </description>
+        <description>When Carla meets Paul at an ornithology conference, tempers fly as feathers get ruffled.</description>
     </book>
     <book id="bk107">
         <authors>
@@ -110,9 +96,7 @@
         <genre>Romance</genre>
         <price currency="gbp">4.95</price>
         <publish_date>2000-11-02</publish_date>
-        <description>A deep sea diver finds true love twenty
-            thousand leagues beneath the sea.
-        </description>
+        <description>A deep sea diver finds true love twenty thousand leagues beneath the sea.</description>
     </book>
     <book id="bk108">
         <authors>
@@ -129,9 +113,7 @@
         <genre>Horror</genre>
         <price currency="usd">4.95</price>
         <publish_date>2000-12-06</publish_date>
-        <description>An anthology of horror stories about roaches,
-            centipedes, scorpions and other insects.
-        </description>
+        <description>An anthology of horror stories about roaches, centipedes, scorpions and other insects.</description>
     </book>
     <book id="bk109">
         <authors>
@@ -144,10 +126,7 @@
         <genre>Science Fiction</genre>
         <price currency="usd">6.95</price>
         <publish_date>2000-11-02</publish_date>
-        <description>After an inadvertant trip through a Heisenberg
-            Uncertainty Device, James Salway discovers the problems
-            of being quantum.
-        </description>
+        <description>After an inadvertant trip through a Heisenberg Uncertainty Device, James Salway discovers the problems of being quantum.</description>
     </book>
     <book id="bk110" cover="hardcover">
         <authors>
@@ -160,9 +139,7 @@
         <genre>Computer</genre>
         <price currency="usd">36.95</price>
         <publish_date>2000-12-09</publish_date>
-        <description>Microsoft's .NET initiative is explored in
-            detail in this deep programmer's reference.
-        </description>
+        <description>Microsoft's .NET initiative is explored in detail in this deep programmer's reference.</description>
     </book>
     <book id="bk111" cover="hardcover">
         <authors>
@@ -175,10 +152,7 @@
         <genre>Computer</genre>
         <price currency="usd">36.95</price>
         <publish_date>2000-12-01</publish_date>
-        <description>The Microsoft MSXML3 parser is covered in
-            detail, with attention to XML DOM interfaces, XSLT processing,
-            SAX and more.
-        </description>
+        <description>The Microsoft MSXML3 parser is covered in detail, with attention to XML DOM interfaces, XSLT processing, SAX and more.</description>
     </book>
     <book id="bk112" cover="hardcover">
         <authors>
@@ -191,10 +165,6 @@
         <genre>Computer</genre>
         <price currency="usd">49.95</price>
         <publish_date>2001-04-16</publish_date>
-        <description>Microsoft Visual Studio 7 is explored in depth,
-            looking at how Visual Basic, Visual C++, C#, and ASP+ are
-            integrated into a comprehensive development
-            environment.
-        </description>
+        <description>Microsoft Visual Studio 7 is explored in depth, looking at how Visual Basic, Visual C++, C#, and ASP+ are integrated into a comprehensive development environment.</description>
     </book>
 </catalog>
