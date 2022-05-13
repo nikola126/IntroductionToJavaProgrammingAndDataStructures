@@ -1,14 +1,8 @@
-package com.programming.java.JacksonXML;
+package com.programming.java.Jackson;
 
-import com.ctc.wstx.shaded.msv.relaxng_datatype.DatatypeException;
-import com.fasterxml.jackson.core.FormatFeature;
-import com.fasterxml.jackson.core.exc.StreamWriteException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.programming.java.JacksonXML.Catalog.Catalog;
+import com.programming.java.Jackson.Catalog.Catalog;
 
 import javax.xml.stream.*;
 import java.io.*;
@@ -64,7 +58,7 @@ public class xmlSerialization {
             return;
         }
 
-        // add indendation
+        // add indentation
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         // prevent dates from being written as Long
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
