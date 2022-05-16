@@ -1,0 +1,5 @@
+We are living in a <upcase>yellow</upcase> submarine.
+We don't have anything else.
+Inside the <upcase>submarine</upcase> is very tight.
+So we are drinking all the day.
+We will move out of it in 5 days.

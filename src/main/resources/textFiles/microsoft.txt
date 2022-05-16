@@ -1,0 +1,1 @@
+Microsoft announced its next generation Java compiler today. It uses advanced parser and special optimizer for the Microsoft JVM.
