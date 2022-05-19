@@ -16,6 +16,9 @@ public class Price {
 
     @Override
     public String toString() {
-        return String.format("%.2f", amount * BGNperDollar) + " BGN";
+        if (currency.equals("bgn"))
+            return amount + " BGN";
+        else
+            return String.format("%.2f", amount * BGNperDollar) + " BGN";
     }
 }

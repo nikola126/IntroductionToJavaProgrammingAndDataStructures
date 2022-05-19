@@ -1,30 +1,24 @@
 package com.programming.java.Jackson;
 
-import com.fasterxml.jackson.core.JacksonException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.programming.java.Jackson.Catalog.Book;
 import com.programming.java.Jackson.Catalog.Catalog;
 
-import javax.xml.stream.*;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class xmlSerialization {
     public static void main(String[] args) {
         String xmlFileLocation = "./src/main/resources/xmlFiles/ms_books.xml";
-        File xmlFile = null;
-        InputStream inputStream = null;
+        File xmlFile;
+        InputStream inputStream;
 
         try {
             xmlFile = new File(xmlFileLocation);
@@ -36,7 +30,7 @@ public class xmlSerialization {
         }
 
         XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
-        XMLStreamReader xmlStreamReader = null;
+        XMLStreamReader xmlStreamReader;
 
         try {
             xmlStreamReader = xmlInputFactory.createXMLStreamReader(inputStream);
@@ -50,28 +44,8 @@ public class xmlSerialization {
         mapper.registerModule(new JavaTimeModule());
         Catalog catalog = null;
 
-        class DeSerializer extends StdDeserializer<Book> {
-            protected DeSerializer() {
-                super(Book.class);
-            }
-
-            @Override
-            public Book deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
-                Book book = new Book();
-
-                while (p.nextToken() != JsonToken.END_OBJECT) {
-                    if (p.getText().equals("title"))
-                        book.setTitle(p.nextTextValue());
-                    else
-                        p.nextToken();
-                }
-
-                return book;
-            }
-        }
-
         final SimpleModule module = new SimpleModule("configModule", com.fasterxml.jackson.core.Version.unknownVersion());
-        module.addDeserializer(Book.class, new DeSerializer());
+        module.addDeserializer(LocalDate.class, new CustomDateDeserializer());
         mapper.registerModule(module);
 
         try {
@@ -88,7 +62,7 @@ public class xmlSerialization {
 
         // Write to file
         String outputFileLocation = "./src/main/resources/xmlFiles/out_books.xml";
-        OutputStream outputStream = null;
+        OutputStream outputStream;
         try {
             outputStream = new FileOutputStream(outputFileLocation);
         } catch (IOException e) {
@@ -104,5 +78,12 @@ public class xmlSerialization {
         // create and set a custom date format
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         mapper.setDateFormat(df);
+
+        try {
+            mapper.writeValue(outputStream, catalog);
+        } catch (IOException e) {
+            System.out.println("Error while writing XML file!");
+            e.printStackTrace();
+        }
     }
 }
