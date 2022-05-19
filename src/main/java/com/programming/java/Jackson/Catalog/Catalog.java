@@ -2,28 +2,23 @@ package com.programming.java.Jackson.Catalog;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import lombok.ToString;
+import lombok.Data;
 
 import java.util.List;
 
-@ToString
+@Data
 public class Catalog {
     @JacksonXmlElementWrapper(useWrapping = false, localName = "book")
     @JacksonXmlProperty(localName = "book")
     private List<Book> books;
 
-    public Catalog(List<Book> books) {
-        this.books = books;
-    }
-
-    public Catalog() {
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Book book : books) {
+            stringBuilder.append(book);
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 }
