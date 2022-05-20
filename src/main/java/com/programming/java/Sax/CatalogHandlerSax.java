@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogHandlerSax extends DefaultHandler {
+    // SAX does not keep the entire XML in memory
+    // Instead it streams it and calls setters/handler methods at opening/closing XML tags
+    //
+    // + Saves memory, faster?
+    // - Cannot work with the entire XML structure
+
     // use the StringBuilder to keep tag contents ("buffer")
     private StringBuilder elementValue = new StringBuilder();
 
@@ -122,6 +128,7 @@ public class CatalogHandlerSax extends DefaultHandler {
             case PRICE: {
                 price.setAmount(Double.parseDouble(elementValue.toString()));
                 book.setPrice(price);
+                price = new Price();
                 break;
             }
             case PUBLISHDATE: {
