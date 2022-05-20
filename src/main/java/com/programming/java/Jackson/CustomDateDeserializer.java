@@ -20,6 +20,10 @@ public class CustomDateDeserializer extends StdDeserializer<LocalDate> {
         // can be used to advance the parser and build the full object
 
         // Date is single field, DO NOT LOOP FORWARD
+        return dateParser(p.getText());
+    }
+
+    public static LocalDate dateParser(String text) {
         LocalDate date = null;
 
         DateTimeFormatter[] acceptedFormats = new DateTimeFormatter[]{
@@ -30,7 +34,7 @@ public class CustomDateDeserializer extends StdDeserializer<LocalDate> {
 
         for (DateTimeFormatter dtf : acceptedFormats) {
             try {
-                date = LocalDate.parse(p.getText(), dtf);
+                date = LocalDate.parse(text, dtf);
             } catch (DateTimeParseException ignored) {}
         }
 
