@@ -6,7 +6,7 @@ import com.programming.java.Jackson.WebApp.JsonSample;
 
 import java.io.*;
 
-public class jsonSerialization {
+public class JsonSerialization {
     public static void main(String[] args) {
         String jsonFileLocation = "./src/main/resources/jsonFiles/web_app.json";
 

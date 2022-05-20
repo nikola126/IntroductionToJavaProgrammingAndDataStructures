@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class xmlSerialization {
+public class XmlSerialization {
     public static void main(String[] args) {
         String xmlFileLocation = "./src/main/resources/xmlFiles/ms_books.xml";
         File xmlFile;

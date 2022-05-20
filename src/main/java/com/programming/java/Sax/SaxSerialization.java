@@ -8,7 +8,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
-public class saxSerialization {
+public class SaxSerialization {
     public static void main(String[] args) {
         CatalogHandlerSax catalogHandlerSax = new CatalogHandlerSax();
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
