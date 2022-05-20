@@ -24,9 +24,8 @@ public class CustomDateDeserializer extends StdDeserializer<LocalDate> {
 
         DateTimeFormatter[] acceptedFormats = new DateTimeFormatter[]{
                 DateTimeFormatter.ofPattern("yyyy-MM-dd"),
-                DateTimeFormatter.ofPattern("yyyy-dd-MM"),
                 DateTimeFormatter.ofPattern("dd-MM-yyyy"),
-                DateTimeFormatter.ofPattern("MM-dd-yyyy"),
+                DateTimeFormatter.ofPattern("dd.MM.yyyy"),
         };
 
         for (DateTimeFormatter dtf : acceptedFormats) {
