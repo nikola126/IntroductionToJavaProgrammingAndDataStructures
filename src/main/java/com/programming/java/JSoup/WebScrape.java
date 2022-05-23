@@ -1,12 +1,14 @@
 package com.programming.java.JSoup;
 
-import lombok.Data;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -104,8 +106,100 @@ public class WebScrape {
         System.out.println(bnbForeignCurrencyRates);
     }
 
+    public static int countOccurences(String text, String target) {
+        int position = 0;
+        int count = 0;
+        while ((position = text.indexOf(target, position)) != -1) {
+            position = position + 1;
+            count++;
+        }
+        return count;
+    }
+
+    public static void parseDirZodiac() {
+        final String[] SIGNS = {"oven", "telets", "bliznatsi", "rak", "lav", "deva",
+                "vezni", "skorpion", "strelets", "kozirog", "vodoley", "ribi"};
+        String URL = "https://zodiac.dir.bg/sign/PLACEHOLDER/dneven-horoskop";
+
+        for (String sign : SIGNS) {
+            String urlToParse = URL.replace("PLACEHOLDER", sign);
+            DirHoroscope dirHoroscope = new DirHoroscope();
+
+            try {
+                final Document document = Jsoup.connect(urlToParse).get();
+                Elements elements = null;
+
+                // extract sign
+                elements = document.select("#first_row > h2");
+                dirHoroscope.setSign(elements.get(0).text());
+
+                // extract text
+                elements = document.select("#content > div.article-body.horoscope > p");
+                dirHoroscope.setText(elements.get(0).text());
+
+                // extract type (daily, weekly...)
+                elements = document.select("#horoscope_nav");
+                elements = elements.select("a");
+
+                for (Element element : elements) {
+                    if (element.attributes().get("class").equals("active"))
+                        dirHoroscope.setHoroscopeType(element.text());
+                }
+
+                // extract dates
+                LocalDate startDate = null;
+                LocalDate endDate = null;
+
+                elements = document.select("#timestamp > span");
+                String[] dateTokens = elements.text().split(" ");
+
+                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+                for (String token : dateTokens) {
+                    try {
+                        if (startDate == null)
+                            startDate = LocalDate.parse(token, dateTimeFormatter);
+                        else
+                            endDate = LocalDate.parse(token, dateTimeFormatter);
+                    } catch (Exception ignored) {}
+                }
+
+                dirHoroscope.setHoroscopeStartDate(startDate);
+                dirHoroscope.setHoroscopeEndDate(endDate);
+
+                // extract categories
+                elements = document.select("#star_rating");
+                List<HoroscopeCategory> categoryList = new ArrayList<>();
+
+                elements = elements.select("#star_rating > li");
+                for (Element element : elements) {
+                    HoroscopeCategory category = new HoroscopeCategory();
+
+                    Elements select = element.select("div.rating_heading");
+                    category.setName(select.text());
+
+                    int allStars = countOccurences(element.toString(), "span class=\"star\"");
+                    category.setMaxValue(allStars);
+
+                    select = element.select("input");
+                    category.setValue(Double.parseDouble(select.attr("value")));
+                    categoryList.add(category);
+                }
+                dirHoroscope.setCategoryList(categoryList);
+
+                 System.out.println(dirHoroscope);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println();
+        }
+
+    }
+
     public static void main(String[] args) {
-//        parseTelegraphStocksOld();
+        parseTelegraphStocksOld();
         parseBnbExchangeRates();
+        parseDirZodiac();
     }
 }
