@@ -1,4 +1,4 @@
-package com.programming.java.Jackson.Catalog;
+package com.programming.java.BookCatalogTask.Catalog;
 
 import lombok.Data;
 

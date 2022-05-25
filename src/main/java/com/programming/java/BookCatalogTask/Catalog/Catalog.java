@@ -1,4 +1,4 @@
-package com.programming.java.Jackson.Catalog;
+package com.programming.java.BookCatalogTask.Catalog;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

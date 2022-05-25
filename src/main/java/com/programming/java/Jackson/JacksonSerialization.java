@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.programming.java.Jackson.Catalog.Catalog;
+import com.programming.java.BookCatalogTask.Catalog.Catalog;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -14,9 +14,18 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class XmlSerialization {
+public class JacksonSerialization {
     public static void main(String[] args) {
         String xmlFileLocation = "./src/main/resources/xmlFiles/ms_books.xml";
+
+        Catalog catalog = getCatalog(xmlFileLocation);
+
+        // Write to file
+        String outputFileLocation = "./src/main/resources/xmlFiles/out_books.xml";
+        writeCatalogToFile(outputFileLocation, catalog);
+    }
+
+    public static Catalog getCatalog(String xmlFileLocation) {
         File xmlFile;
         InputStream inputStream;
 
@@ -24,9 +33,7 @@ public class XmlSerialization {
             xmlFile = new File(xmlFileLocation);
             inputStream = new FileInputStream(xmlFile);
         } catch (FileNotFoundException e) {
-            System.out.println("XML File not found!");
-            e.printStackTrace();
-            return;
+            throw new RuntimeException("XML File not found!");
         }
 
         XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
@@ -35,9 +42,7 @@ public class XmlSerialization {
         try {
             xmlStreamReader = xmlInputFactory.createXMLStreamReader(inputStream);
         } catch (XMLStreamException e) {
-            System.out.println("Error while creating the XML reader!");
-            e.printStackTrace();
-            return;
+            throw new RuntimeException("Error while creating the XML reader!");
         }
 
         XmlMapper mapper = new XmlMapper();
@@ -51,25 +56,28 @@ public class XmlSerialization {
         try {
             catalog = mapper.readValue(xmlStreamReader, Catalog.class);
         } catch (IOException e) {
-            System.out.println("Error while reading the XML file!");
-            e.printStackTrace();
-            return;
+            throw new RuntimeException("Error while reading the XML file!");
         } catch (DateTimeParseException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error while parsing date!");
         }
 
-        System.out.println(catalog);
+        return catalog;
+    }
 
-        // Write to file
-        String outputFileLocation = "./src/main/resources/xmlFiles/out_books.xml";
+    public static void writeCatalogToFile(String outputFileLocation, Catalog catalog) {
         OutputStream outputStream;
         try {
             outputStream = new FileOutputStream(outputFileLocation);
         } catch (IOException e) {
-            System.out.println("Error creating output stream!");
-            e.printStackTrace();
-            return;
+            throw new RuntimeException("Error creating output stream!");
         }
+
+        XmlMapper mapper = new XmlMapper();
+        mapper.registerModule(new JavaTimeModule());
+
+        final SimpleModule module = new SimpleModule("configModule", com.fasterxml.jackson.core.Version.unknownVersion());
+        module.addDeserializer(LocalDate.class, new CustomDateDeserializer());
+        mapper.registerModule(module);
 
         // add indentation
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -82,8 +90,7 @@ public class XmlSerialization {
         try {
             mapper.writeValue(outputStream, catalog);
         } catch (IOException e) {
-            System.out.println("Error while writing XML file!");
-            e.printStackTrace();
+            throw new RuntimeException("Error while writing XML file!");
         }
     }
 }

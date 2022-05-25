@@ -1,9 +1,9 @@
 package com.programming.java.Sax;
 
-import com.programming.java.Jackson.Catalog.Author;
-import com.programming.java.Jackson.Catalog.Book;
-import com.programming.java.Jackson.Catalog.Catalog;
-import com.programming.java.Jackson.Catalog.Price;
+import com.programming.java.BookCatalogTask.Catalog.Author;
+import com.programming.java.BookCatalogTask.Catalog.Book;
+import com.programming.java.BookCatalogTask.Catalog.Catalog;
+import com.programming.java.BookCatalogTask.Catalog.Price;
 import com.programming.java.Jackson.CustomDateDeserializer;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -95,10 +95,12 @@ public class CatalogHandlerSax extends DefaultHandler {
         switch (qName.toLowerCase()) {
             case CATALOG: {
                 catalog.setBooks(bookList);
+                bookList = new ArrayList<>();
                 break;
             }
             case BOOK: {
                 bookList.add(book);
+                book = new Book();
                 return;
             }
             case FIRSTNAME: {
@@ -115,6 +117,7 @@ public class CatalogHandlerSax extends DefaultHandler {
             }
             case AUTHORS: {
                 book.setAuthorsList(authorList);
+                authorList = new ArrayList<>();
                 break;
             }
             case TITLE: {
