@@ -10,6 +10,11 @@ import java.io.IOException;
 
 public class SaxSerialization {
     public static void main(String[] args) {
+        String xmlFileLocation = "./src/main/resources/xmlFiles/ms_books.xml";
+        System.out.println(getCatalog(xmlFileLocation));
+    }
+
+    public static Catalog getCatalog(String xmlFileLocation) {
         CatalogHandlerSax catalogHandlerSax = new CatalogHandlerSax();
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         SAXParser saxParser;
@@ -17,24 +22,17 @@ public class SaxSerialization {
         try {
             saxParser = saxParserFactory.newSAXParser();
         } catch (SAXException | ParserConfigurationException e) {
-            System.out.println("Error creating SAX Parser!");
-            return;
+            throw new RuntimeException("Error creating SAX Parser!");
         }
-
-        String xmlFileLocation = "./src/main/resources/xmlFiles/ms_books.xml";
-        Catalog catalog;
 
         try {
             saxParser.parse(xmlFileLocation, catalogHandlerSax);
         } catch (IOException e) {
-            System.out.println("Error reading file " + xmlFileLocation);
-            return;
+            throw new RuntimeException("Error reading file " + xmlFileLocation);
         } catch (SAXException e) {
-            System.out.println("Error parsing the file " + xmlFileLocation);
-            return;
+            throw new RuntimeException("Error parsing the file " + xmlFileLocation);
         }
 
-        catalog = catalogHandlerSax.getCatalog();
-        System.out.println(catalog);
+        return catalogHandlerSax.getCatalog();
     }
 }

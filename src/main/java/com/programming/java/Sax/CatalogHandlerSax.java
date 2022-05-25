@@ -95,10 +95,12 @@ public class CatalogHandlerSax extends DefaultHandler {
         switch (qName.toLowerCase()) {
             case CATALOG: {
                 catalog.setBooks(bookList);
+                bookList = new ArrayList<>();
                 break;
             }
             case BOOK: {
                 bookList.add(book);
+                book = new Book();
                 return;
             }
             case FIRSTNAME: {
@@ -115,6 +117,7 @@ public class CatalogHandlerSax extends DefaultHandler {
             }
             case AUTHORS: {
                 book.setAuthorsList(authorList);
+                authorList = new ArrayList<>();
                 break;
             }
             case TITLE: {

@@ -25,7 +25,6 @@ public class WebScrape {
             for (Element row : document.select("table.tablesorter.full tr")) {
                 if (row.select("td:nth-of-type(1)").text().equals("")) {
                     // header row with no data
-                    System.out.println(row);
                 } else {
                     String ticker = row.select("td:nth-of-type(1)").text();
                     String name = row.select("td:nth-of-type(2)").text();
@@ -43,7 +42,7 @@ public class WebScrape {
         }
     }
 
-    public static void parseBnbExchangeRates() {
+    public static BnbForeignCurrencyRates parseBnbExchangeRates() {
         final String URL = "https://bnb.bg/Statistics/StExternalSector/StExchangeRates/StERForeignCurrencies/index.htm";
 
         BnbForeignCurrencyRates bnbForeignCurrencyRates = new BnbForeignCurrencyRates();
@@ -73,8 +72,6 @@ public class WebScrape {
 
             // Copy Selector in Edge
             for (Element row : document.select("#Exchange_Rate_Search > div.table_box > table > tbody > tr")) {
-                System.out.println(row);
-
                 try {
                     String bgFullName = row.select("td:nth-child(1)").text();
                     String enSymbol = row.select("td:nth-child(2)").text();
@@ -103,7 +100,7 @@ public class WebScrape {
             e.printStackTrace();
         }
 
-        System.out.println(bnbForeignCurrencyRates);
+        return bnbForeignCurrencyRates;
     }
 
     public static int countOccurences(String text, String target) {
@@ -116,7 +113,7 @@ public class WebScrape {
         return count;
     }
 
-    public static void parseDirZodiac() {
+    public static DirHoroscope parseDirZodiac() {
         final String[] SIGNS = {"oven", "telets", "bliznatsi", "rak", "lav", "deva",
                 "vezni", "skorpion", "strelets", "kozirog", "vodoley", "ribi"};
         String URL = "https://zodiac.dir.bg/sign/PLACEHOLDER/dneven-horoskop";
@@ -187,19 +184,17 @@ public class WebScrape {
                 }
                 dirHoroscope.setCategoryList(categoryList);
 
-                 System.out.println(dirHoroscope);
-
+                return dirHoroscope;
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println();
         }
 
+        return null;
     }
 
     public static void main(String[] args) {
-        parseTelegraphStocksOld();
-        parseBnbExchangeRates();
-        parseDirZodiac();
+        System.out.println(parseBnbExchangeRates());
+        System.out.println(parseDirZodiac());
     }
 }

@@ -10,28 +10,29 @@ import java.io.FileReader;
 public class JaxbSerialization {
     public static void main(String[] args) {
         String xmlFileLocation = "./src/main/resources/xmlFiles/ms_books.xml";
+
+        System.out.println(getCatalog(xmlFileLocation));
+    }
+
+    public static Catalog getCatalog(String xmlFileLocation) {
         JAXBContext context;
 
         try {
             context = JAXBContext.newInstance(Catalog.class);
         } catch (JAXBException e) {
-            e.printStackTrace();
-            System.out.println("Error creating JAXB Context!");
-            return;
+            throw new RuntimeException("Error creating JAXB Context!");
         }
 
         Catalog catalog;
+
         try {
             catalog = (Catalog) context.createUnmarshaller().unmarshal(new FileReader(xmlFileLocation));
         } catch (JAXBException e) {
-            System.out.println("Error creating unmarshaller!");
-            return;
+            throw new RuntimeException("Error creating unmarshaller!");
         } catch (FileNotFoundException e) {
-            System.out.println("Could not find file " + xmlFileLocation);
-            return;
+            throw new RuntimeException("Could not find file " + xmlFileLocation);
         }
 
-        System.out.println(catalog);
-
+        return catalog;
     }
 }
