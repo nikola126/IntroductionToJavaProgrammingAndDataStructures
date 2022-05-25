@@ -12,8 +12,6 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "price")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Price {
-    public static final double BGNperDollar = 1.859;
-
     @JacksonXmlProperty(isAttribute = true)
     @XmlAttribute(name = "currency")
     private String currency;
@@ -21,12 +19,4 @@ public class Price {
     @JacksonXmlText
     @XmlValue
     private double amount;
-
-    @Override
-    public String toString() {
-        if (currency.equals("bgn"))
-            return amount + " BGN";
-        else
-            return String.format("%.2f", amount * BGNperDollar) + " BGN";
-    }
 }

@@ -5,12 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.programming.java.JAXB.LocalDateAdapter;
-import lombok.*;
+import lombok.Data;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Data
@@ -47,12 +46,4 @@ public class Book {
     private LocalDate publishDate;
 
     private String description;
-
-    @Override
-    public String toString() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return title + " "
-                + (price == null ? ("Cena po zapitvane") : (price)) + " "
-                + (publishDate == null ? ("Bez data") : (dtf.format(publishDate)));
-    }
 }
