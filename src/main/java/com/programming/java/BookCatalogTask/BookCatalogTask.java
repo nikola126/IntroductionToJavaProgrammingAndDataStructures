@@ -52,8 +52,14 @@ public class BookCatalogTask {
             if (book.getTitle() != null)
                 title = book.getTitle();
 
-            if (book.getPrice() != null)
-                price = String.format("%.2f BGN", ratesMap.get(book.getPrice().getCurrency().toUpperCase()) * book.getPrice().getAmount());
+            if (book.getPrice() != null) {
+                double mappedConversionRate = ratesMap.getOrDefault(book.getPrice().getCurrency().toUpperCase(), 0.0);
+
+                if (mappedConversionRate != 0.0)
+                    price = String.format("%.2f BGN", ratesMap.get(book.getPrice().getCurrency().toUpperCase()) * book.getPrice().getAmount());
+                else
+                    price = String.format("%.2f %s", book.getPrice().getAmount(), book.getPrice().getCurrency().toUpperCase());
+            }
 
             if (book.getPublishDate() != null)
                 date = book.getPublishDate().format(dtf);
