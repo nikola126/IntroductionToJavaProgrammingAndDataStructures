@@ -1,5 +1,6 @@
 package com.programming.java.LaLigaBetTask;
 
+import com.programming.java.LaLigaBetTask.Classes.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

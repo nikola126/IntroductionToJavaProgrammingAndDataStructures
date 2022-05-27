@@ -1,4 +1,4 @@
-package com.programming.java.LaLigaBetTask;
+package com.programming.java.LaLigaBetTask.Classes;
 
 import lombok.Data;
 
